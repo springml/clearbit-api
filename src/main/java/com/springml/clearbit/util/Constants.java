@@ -15,6 +15,7 @@ public class Constants {
     public static final String DEFAULT_CONNECTION_TIMEOUT = "600000";
 
     public static final String CLEARBIT_BASEURL = "https://company.clearbit.com/";
+//    public static final String CLEARBIT_BASEURL = "http://localhost:5050/";
     public static final String CLEARBIT_API_VERSION = "v2";
     public static final String STR_COMPANIES = "companies";
     public static final String STR_PEOPLE = "people";
