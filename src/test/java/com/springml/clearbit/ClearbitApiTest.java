@@ -3,6 +3,7 @@ package com.springml.clearbit;
 import com.springml.clearbit.impl.ClearbitV2Impl;
 import com.springml.clearbit.model.Company;
 import com.springml.clearbit.model.Person;
+import com.springml.clearbit.model.common.Error;
 import com.springml.clearbit.util.HttpHelper;
 import org.apache.commons.io.IOUtils;
 import org.junit.After;
@@ -36,6 +37,10 @@ public class ClearbitApiTest {
         InputStream personIs = this.getClass().getClassLoader().getResourceAsStream("person.json");
         String personJson = IOUtils.toString(personIs, Charset.defaultCharset());
         when(httpHelper.get("https://company.clearbit.com/v2/people/find?email=alex@alexmaccaw.com", API_KEY)).thenReturn(personJson);
+
+        InputStream errorIs = this.getClass().getClassLoader().getResourceAsStream("error.json");
+        String errorJson = IOUtils.toString(errorIs, Charset.defaultCharset());
+        when(httpHelper.get("https://company.clearbit.com/v2/companies/find?domain=uber", API_KEY)).thenReturn(errorJson);
     }
 
     @After
@@ -48,6 +53,15 @@ public class ClearbitApiTest {
         Company company = clearbitApi.getCompany("uber.com");
         assertNotNull(company);
         assertEquals("Uber", company.getName());
+    }
+
+    @Test
+    public void invalidDomain() throws Exception {
+        Company company = clearbitApi.getCompany("uber");
+        assertNotNull(company);
+        Error error = company.getError();
+        assertNotNull(error);
+        assertEquals("domain_invalid", error.getType());
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.springml.clearbit.model;
 
+import com.springml.clearbit.model.common.Error;
 import com.springml.clearbit.model.common.Facebook;
 import com.springml.clearbit.model.common.Linkedin;
 import com.springml.clearbit.model.common.Twitter;
@@ -29,6 +30,7 @@ public class Person {
     private Aboutme aboutme;
     private Gravatar gravatar;
     private boolean fuzzy;
+    private Error error;
 
     /**
      *
@@ -413,4 +415,11 @@ public class Person {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public Error getError() {
+        return error;
+    }
+
+    public void setError(Error error) {
+        this.error = error;
+    }
 }

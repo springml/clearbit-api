@@ -1,6 +1,7 @@
 
 package com.springml.clearbit.model;
 
+import com.springml.clearbit.model.common.Error;
 import com.springml.clearbit.model.common.Facebook;
 import com.springml.clearbit.model.common.Linkedin;
 import com.springml.clearbit.model.common.Twitter;
@@ -37,6 +38,7 @@ public class Company {
     private String ticker;
     private String phone;
     private Metrics metrics;
+    private Error error;
     private List<String> tech = new ArrayList<String>();
 
     /**
@@ -512,4 +514,11 @@ public class Company {
         return ToStringBuilder.reflectionToString(this);
     }
 
+    public Error getError() {
+        return error;
+    }
+
+    public void setError(Error error) {
+        this.error = error;
+    }
 }
