@@ -1,0 +1,6 @@
+{
+  "error": {
+    "type": "domain_invalid",
+    "message": "Invalid domain name: \"slack\""
+  }
+}
